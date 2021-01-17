@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import RemoveIcon from '@material-ui/icons/Remove';
+import Button from '@material-ui/core/Button';
+import Tooltip from '@material-ui/core/Tooltip';
 
-function App() {
+const App = () => {
+  const [state, setState] = useState(0);
+  const incrementNum = () => {
+    setState(state + 1);
+  }
+  const decrementNum = () => {
+    if (state > 0) {
+      setState(state - 1);
+    } else {
+      alert("limit 0 is reached!");
+    }
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <div className="main_div">
+        <div className="center_div">
+          <h1>{state}</h1>
+          <div className="btn_div">
+            <Tooltip title="Add">
+              <Button onClick={incrementNum} className="btn_green">
+                <AddCircleOutlineIcon />
+              </Button>
+            </Tooltip>
+            <Tooltip title="Delete">
+              <Button onClick={decrementNum} className="btn_red">
+                <RemoveIcon />
+              </Button>
+            </Tooltip>
+          </div>
+        </div>
+      </div>
+    </>
+  )
 }
 
 export default App;
